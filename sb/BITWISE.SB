@@ -1,0 +1,11 @@
+VAR sl
+SHL %1, %2, %&sl%
+LOG %sl%
+
+VAR sr
+SHR %1, %2, %&sr%
+LOG %sr%
+
+VAR not
+INOT %1, %&not%
+LOG %not%
