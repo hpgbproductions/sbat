@@ -1,0 +1,24 @@
+ECHO 0
+REM "Gets the type of the first argument and displays it in the dev console"
+
+VAR IsInt
+VAR IsFlt
+VAR IsStr
+TYPINT %1,%&IsInt%
+TYPFLT %1,%&IsFlt%
+TYPSTR %1,%&IsStr%
+
+IF %IsInt%
+LOG "%1 is an integer."
+QUIT
+ENDIF
+
+IF %IsFlt%
+LOG "%1 is a floating-point number."
+QUIT
+ENDIF
+
+IF %IsStr%
+LOG "\"%1\" is a string."
+QUIT
+ENDIF

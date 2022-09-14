@@ -1,0 +1,15 @@
+VAR flr
+FLR %1, %&flr%
+LOG "floor(%1) is %flr%"
+
+VAR rnd
+RND %1, %&rnd%
+LOG "round(%1) is %rnd%"
+
+VAR ceil
+CEIL %1, %&ceil%
+LOG "ceil(%1) is %ceil%"
+
+VAR char
+CHAR %flr%, %&char%
+LOG "(char)floor(%flr%) is %char%"

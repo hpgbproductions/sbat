@@ -1,0 +1,49 @@
+ECHO 0
+REM "Prints Fibonacci numbers up to F(n_max), where n_max = %1"
+
+VAR %1, "n_max"
+VAR 2,"n"
+VAR 0,"fn"
+VAR 1,"fn_1"
+VAR 0,"fn_2"
+
+REM "Check that an integer is provided"
+TYPINT %n_max%
+NOT
+IF
+LOGE "Argument 1 must be a non-negative integer."
+QUIT
+ENDIF
+
+REM "Check that the integer is greater than or equal to 0"
+ISLT %n_max%,0
+IF
+LOGE "Argument 1 must be a non-negative integer."
+QUIT
+ENDIF
+
+REM "Prints F0"
+ISGT %n_max%,-1
+IF
+LOG 0
+ENDIF
+
+REM "Prints F1"
+ISGT %n_max%,0
+IF
+LOG 1
+ENDIF
+
+REM "Prints the remaining numbers"
+POS "FIB_LOOP_START"
+ISGT %n%,%n_max%
+NOT
+IF
+	ADD %n%,1,%&n%
+	ADD %fn_2%,%fn_1%,%&fn%
+	LOG %fn%
+
+	ST %fn_1%,%&fn_2%
+	ST %fn%,%&fn_1%
+	GOTO "FIB_LOOP_START"
+ENDIF

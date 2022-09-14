@@ -1,0 +1,92 @@
+ECHO 0
+REM "Set the wind speed and direction."
+REM "Trigonometry is implemented as a Taylor series with four terms."
+REM "%1: Speed in m/s"
+REM "%2: Direction in degrees"
+
+REM "Check that the entered values are valid"
+VAR 0,"IsString1"
+VAR 0,"IsString2"
+TYPSTR %1,%&IsString1%
+TYPSTR %2,%&IsString2%
+OR %IsString1%,%IsString2%
+IF
+LOGE "Speed and direction must be numbers."
+QUIT
+ENDIF
+
+REM "Check that the player is in the level"
+NOT %IN_LEVEL%
+OR %IN_DESIGNER%
+IF
+LOGE "Script can only be run in the flight simulation."
+QUIT
+ENDIF
+
+REM "Constants"
+VAR "PI"
+ST 3.141593,%&PI%
+VAR "TWO_PI"
+MUL %PI%,2,%&TWO_PI%
+VAR "DEG2RAD"
+DIV %PI%,180,%&DEG2RAD%
+VAR "RAD2DEG"
+DIV 180,%PI%,%&RAD2DEG%
+
+VAR %1,"a"
+VAR "rad"
+REM "Get an angle in radians, between -PI and +PI"
+MUL %2,%DEG2RAD%,%&rad%
+ADD %rad%,%PI%,%&rad%
+MOD %rad%,%TWO_PI%,%&rad%
+SUB %rad%,%PI%,%&rad%
+
+VAR "rad_2"
+MUL %rad%,%rad%,%&rad_2%
+VAR "rad_3"
+MUL %rad_2%,%rad%,%&rad_3%
+VAR "rad_4"
+MUL %rad_3%,%rad%,%&rad_4%
+VAR "rad_5"
+MUL %rad_4%,%rad%,%&rad_5%
+VAR "rad_6"
+MUL %rad_5%,%rad%,%&rad_6%
+VAR "rad_7"
+MUL %rad_6%,%rad%,%&rad_7%
+
+VAR "TAYLOR_1"
+VAR "TAYLOR_2"
+VAR "TAYLOR_3"
+VAR "TAYLOR_4"
+VAR "X"
+VAR "Z"
+
+REM "Z = a*cos(rad)"
+ST 1,%&TAYLOR_1%
+SUB 0,%rad_2%,%&TAYLOR_2%
+DIV %TAYLOR_2%,2,%&TAYLOR_2%
+ADD 0,%rad_4%,%&TAYLOR_3%
+DIV %TAYLOR_3%,24,%&TAYLOR_3%
+SUB 0,%rad_6%,%&TAYLOR_4%
+DIV %TAYLOR_4%,720,%&TAYLOR_4%
+ADD %TAYLOR_1%,%TAYLOR_2%
+ADD %TAYLOR_3%
+ADD %TAYLOR_4%
+MUL %a%
+ST %REGISTER%,%&Z%
+
+REM "X = a*sin(rad)"
+ST %rad%,%&TAYLOR_1%
+SUB 0,%rad_3%,%&TAYLOR_2%
+DIV %TAYLOR_2%,6,%&TAYLOR_2%
+ADD 0,%rad_5%,%&TAYLOR_3%
+DIV %TAYLOR_3%,120,%&TAYLOR_3%
+SUB 0,%rad_7%,%&TAYLOR_4%
+DIV %TAYLOR_4%,5040,%&TAYLOR_4%
+ADD %TAYLOR_1%,%TAYLOR_2%
+ADD %TAYLOR_3%
+ADD %TAYLOR_4%
+MUL %a%
+ST %REGISTER%,%&X%
+
+EXE "SetWindSpeed %X% 0 %Z%"

@@ -1,0 +1,10 @@
+ECHO 0
+REM "This is a test Simple Batch Program"
+
+LOG "Hello, World!"
+
+VAR %1,"MyName"
+TYPSTR %MyName%
+IF
+LOG "Hello, %MyName%!"
+ENDIF
