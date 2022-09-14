@@ -2,6 +2,19 @@
 
 Reference for the SB programming language.
 
+Commands by Type:
+- [Basic Variable Access](#basic-variable-access)
+- [Conversion](#conversion)
+- [Numeric](#numeric)
+- [Integer Bitwise](#integer-bitwise)
+- [Logical](#logical)
+- [Strings](#strings)
+- [Comparison](#comparison)
+- [Data Type Checks](#data-type-checks)
+- [Branching](#branching)
+- [Dev Console](#dev-console)
+- [Others](#others)
+
 ## Syntax Overview
 
 ### Data and Variables
@@ -71,6 +84,8 @@ Use the `ExecuteSB` dev console command to run SB files. As double quotes cannot
     
     ExecuteSB hello,#Simple Planes#      // wrong
     ExecuteSB "hello,#Simple Planes#"    // correct
+    
+If echo is enabled, commands that ran successfully will be written to the dev console. This is useful for debugging SB programs. Use the ECHO command in the SB file to choose whether such messages are written.
     
 A collection of SB files is available [here](/sb).
 
@@ -200,13 +215,79 @@ XOR | `object left, object right, int addr` | Gets the logical XOR of `left` and
 Command | Arguments | Description
 :---: | :--- | :---
 ADD | `string right` | Appends the string in the register with `right`
+ADD | `string left, string right` | Appends `left` and `right`, and writes the result to the register
+ADD | `string left, string right, int addr` | Appends `left` and `right`, and writes the result to the address
+MUL | `int right` | Repeats the string in the register by `right` times
+MUL | `string left, int right` | Repeats `left` by `right` times and writes the result to the register
+MUL | `string left, int right, int addr` | Repeats `left` by `right` times and writes the result to the address
+STRGET | `int index` | Writes the integer corresponding to the character at the index to the register
+STRGET | `string str, int index` | Writes the integer corresponding to the character at the index to the register
+STRGET | `string str, int index, int addr` | Writes the integer corresponding to the character at the index to the address
+STRLEN | (none) | Outputs the length of the string in the register, to the register
+STRLEN | `string str` | Outputs the length of `str` to the register
+STRLEN | `string str, int addr` | Outputs the length of `str` to the address
+SUBSTR | `int start, int length` | Replaces the string in the register with a substring
+SUBSTR | `string str, int start, int length` | Copies a substring of the provided string to the register
+SUBSTR | `string str, int start, int length, int addr` | Copies a substring of the provided string to the address
 
 #### Comparison
 
+Command | Arguments | Description
+:---: | :--- | :---
+ISEQ | `object right` | If the value of the register is equal to `right`, writes 1 to the register. Otherwise, writes 0.
+ISEQ | `object left, object right` | If the value of `left` is equal to `right`, writes 1 to the register. Otherwise, writes 0.
+ISEQ | `object left, object right, int addr` | If the value of `left` is equal to `right`, writes 1 to the address. Otherwise, writes 0.
+ISGT | `int right` | If the value of the register is greater than `right`, writes 1 to the register. Otherwise, writes 0.
+ISGT | `float right` | If the value of the register is greater than `right`, writes 1 to the register. Otherwise, writes 0.
+ISGT | `int left, int right` | If `left` is greater than `right`, writes 1 to the register. Otherwise, writes 0.
+ISGT | `float left, float right` | If `left` is greater than `right`, writes 1 to the register. Otherwise, writes 0.
+ISGT | `int left, int right, int addr` | If `left` is greater than `right`, writes 1 to the address. Otherwise, writes 0.
+ISGT | `float left, float right, int addr` | If `left` is greater than `right`, writes 1 to the address. Otherwise, writes 0.
+ISLT | `int right` | If the value of the register is less than `right`, writes 1 to the register. Otherwise, writes 0.
+ISLT | `float right` | If the value of the register is less than `right`, writes 1 to the register. Otherwise, writes 0.
+ISLT | `int left, int right` | If `left` is less than `right`, writes 1 to the register. Otherwise, writes 0.
+ISLT | `float left, float right` | If `left` is less than `right`, writes 1 to the register. Otherwise, writes 0.
+ISLT | `int left, int right, int addr` | If `left` is less than `right`, writes 1 to the address. Otherwise, writes 0.
+ISLT | `float left, float right, int addr` | If `left` is less than `right`, writes 1 to the address. Otherwise, writes 0.
+
 #### Data Type Checks
+
+Command | Arguments | Description
+:---: | :--- | :---
+TYPINT | (none) | If the value of the register is of type `int`, writes 1 to the register. Otherwise, writes 0.
+TYPINT | `object var` | If `var` is of type `int`, writes 1 to the register. Otherwise, writes 0.
+TYPINT | `object var, int addr` | If `var` is of type `int`, writes 1 to the address. Otherwise, writes 0.
+TYPFLT | (none) | If the value of the register is of type `float`, writes 1 to the register. Otherwise, writes 0.
+TYPFLT | `object var` | If `var` is of type `float`, writes 1 to the register. Otherwise, writes 0.
+TYPFLT | `object var, int addr` | If `var` is of type `float`, writes 1 to the address. Otherwise, writes 0.
+TYPSTR | (none) | If the value of the register is of type `string`, writes 1 to the register. Otherwise, writes 0.
+TYPSTR | `object var` | If `var` is of type `string`, writes 1 to the register. Otherwise, writes 0.
+TYPSTR | `object var, int addr` | If `var` is of type `string`, writes 1 to the address. Otherwise, writes 0.
 
 #### Branching
 
+Command | Arguments | Description
+:---: | :--- | :---
+IF | (none) | If the value of the register corresponds to `true`, continues to the next line. Otherwise, skips forward to the next ENDIF, if one exists.
+IF | `object input` | If `input` corresponds to `true`, continues to the next line. Otherwise, skips forward to the next ENDIF, if one exists.
+ENDIF | (none) | Marks a position for an IF command to jump to if `false` was passed to it.
+GOTO | (none) | Jumps to the first POS with a string that matches the register, if one exists.
+GOTO | `string pos` | Jumps to the first POS with a string that matches `pos`, if one exists.
+POS | `string pos` | Marks a position that a GOTO command can jump to.
+
 #### Dev Console
 
+Command | Arguments | Description
+:---: | :--- | :---
+EXE | `string command` | Runs a dev console command.
+LOG | `string str` | Logs a message to the dev console.
+LOGW | `string str` | Logs a warning to the dev console.
+LOGE | `string str` | Logs an error to the dev console.
+ECHO | `object on` | If the value corresponds to `true`, enables echo. Otherwise, disables echo.
+CLS | (none) | Clears all logs from the dev console. Equivalent to `EXE ClearLog`.
+
 #### Others
+Command | Arguments | Description
+:---: | :--- | :---
+REM | (none) | The command allows comments (remarks) to be written.
+QUIT | (none) | Ends execution of the SB program.
