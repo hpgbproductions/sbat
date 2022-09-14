@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModManifest buildID="d0790cb6-f7ea-4f52-ac98-7126534c360e">
+  <Mod name="Simple Batch Programming" author="hpgbproductions" versionMajor="1" versionMinor="0" loadPriority="1000" lastUpdated="2022-09-14T09:39:41.5480136Z" apiVersion="1.0.0.0" description="">
+    <Steam title="" visibility="Public" previewPath="" language="English" tags="">
+      <description></description>
+    </Steam>
+    <GameObjects>
+      <GameObject name="SimpleBatchPersistent" path="Assets/_ModAssets_/SimpleBatchPersistent.prefab" />
+    </GameObjects>
+    <Assets />
+    <MaterialShaderMap />
+    <Assemblies>
+      <Assembly name="SimpleBatchProgramming-Assembly-CSharp.dll" path="Assets/_ModAssets_/SimpleBatchProgramming-Assembly-CSharp.dll.bytes" isProjectAssembly="true" />
+    </Assemblies>
+    <Sections>
+      <SimplePlanesMod apiVersion="1.0.0.0">
+        <Maps />
+        <Levels />
+        <Parts />
+        <DesignerPlugins />
+        <MapPlugins />
+        <PersistentObjects>
+          <PersistentObject objectName="SimpleBatchPersistent" />
+        </PersistentObjects>
+      </SimplePlanesMod>
+    </Sections>
+  </Mod>
+</ModManifest>
