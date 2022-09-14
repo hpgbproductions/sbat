@@ -82,11 +82,11 @@ A collection of SB files is available [here](/sb).
 
 Command | Arguments | Description
 :---: | :--- | :---
-VAR | `string varName` | Declare a new variable with a value of `0`
+VAR | `string varName` | Declare a new variable with a value of 0
 VAR | `object value, string varName` | Declare a new variable and initialize with a value
 SET | `object value` | Set the value of the register
 SET | `object value, int addr` | Set the value of a variable
-ST |  | Alias of `SET`
+ST |  | Alias of SET
 STC | `string str` | Set the value of the register as a composite string
 STC | `string str, int addr` | Set the value of a variable as a composite string
 
@@ -94,7 +94,7 @@ STC | `string str, int addr` | Set the value of a variable as a composite string
 
 Command | Arguments | Description
 :---: | :--- | :---
-TOINT |  | Alias of `FLR`
+TOINT |  | Alias of FLR
 RND | `float value` | Rounds the value to the nearest integer and writes the result to the register
 RND | `float value, int addr` | Rounds the value to the nearest integer and writes the result to the address
 FLR | `float value` | Rounds down the value and writes the result to the register
@@ -114,11 +114,92 @@ BIN | `int value, int addr` | Converts the integer into its binary representatio
 
 #### Numeric
 
+Command | Arguments | Description
+:---: | :--- | :---
+ADD | `int right` | Increments the register by `right`
+ADD | `float right` | Increments the register by `right`
+ADD | `int left, int right` | Calculates the sum of `left` and `right` and writes it to the register
+ADD | `float left, float right` | Calculates the sum of `left` and `right` and writes it to the register
+ADD | `int left, int right, int addr` | Calculates the sum of `left` and `right` and writes it to the address
+ADD | `float left, float right, int addr` | Calculates the sum of `left` and `right` and writes it to the address
+SUB | `int right` | Decrements the register by `right`
+SUB | `float right` | Decrements the register by `right`
+SUB | `int left, int right` | Calculates the difference between `left` and `right` and writes it to the register
+SUB | `float left, float right` | Calculates the difference between `left` and `right` and writes it to the register
+SUB | `int left, int right, int addr` | Calculates the difference between `left` and `right` and writes it to the address
+SUB | `float left, float right, int addr` | Calculates the difference between `left` and `right` and writes it to the address
+MUL | `int right` | Multiplies the register by `right`
+MUL | `float right` | Multiplies the register by `right`
+MUL | `int left, int right` | Calculates the product of `left` and `right` and writes it to the register
+MUL | `float left, float right` | Calculates the product of `left` and `right` and writes it to the register
+MUL | `int left, int right, int addr` | Calculates the product of `left` and `right` and writes it to the address
+MUL | `float left, float right, int addr` | Calculates the product of `left` and `right` and writes it to the address
+DIV | `int right` | Divides the register by `right`
+DIV | `float right` | Divides the register by `right`
+DIV | `int left, int right` | Calculates the quotient of `left` divided by `right` and writes it to the register
+DIV | `float left, float right` | Calculates the quotient of `left` divided by `right` and writes it to the register
+DIV | `int left, int right, int addr` | Calculates the quotient of `left` divided by `right` and writes it to the address
+DIV | `float left, float right, int addr` | Calculates the quotient of `left` divided by `right` and writes it to the address
+MOD | `int right` | Calculates the remainder of the register divided by `right` and writes it to the register
+MOD | `float right` | Repeats the value of the register by `right` and writes it to the register
+MOD | `int left, int right` | Calculates the remainder of `left` divided by `right` and writes it to the register
+MOD | `float left, float right` | Repeats the value of `left` by `right` and writes it to the register
+MOD | `int left, int right, int addr` | Calculates the remainder of `left` divided by `right` and writes it to the address
+MOD | `float left, float right, int addr` | Repeats the value of `left` by `right` and writes it to the address
+RANDOM | (none) | Obtains a random floating-point number between 0 and 1, and writes it to the register
+RANDOM | `int addr` | Obtains a random floating-point number between 0 and 1, and writes it to the address
+RANDOM | `int minInclusive, int maxExclusive` | Obtains a random integer and writes it to the register
+RANDOM | `int minInclusive, int maxExclusive, int addr` | Obtains a random integer and writes it to the address
+RANDOM | `float minInclusive, float maxInclusive` | Obtains a random floating-point number and writes it to the register
+RANDOM | `float minInclusive, float maxInclusive, int addr` | Obtains a random floating-point number and writes it to the address
+
 #### Integer Bitwise
+Command | Arguments | Description
+:---: | :--- | :---
+SHL | `int amount` | Shift bits of the register left by `amount`
+SHL | `int value, int amount` | Shift bits of `value` left by `amount`, and writes it to the register
+SHL | `int value, int amount, int addr` | Shift bits of `value` left by `amount`, and writes it to the address
+SHR | `int amount` | Shift bits of the register right by `amount`
+SHR | `int value, int amount` | Shift bits of `value` right by `amount`, and writes it to the register
+SHR | `int value, int amount, int addr` | Shift bits of `value` right by `amount`, and writes it to the address
+INOT | (none) | Replace the register with its bitwise complement
+INOT | `int value` | Gets the bitwise complement of `value` and writes it to the register
+INOT | `int value, int addr` | Gets the bitwise complement of `value` and writes it to the address
+IAND | `int right` | Gets the bitwise logical AND of the register and `right`, and writes it to the register
+IAND | `int left, int right` | Gets the bitwise logical AND of `left` and `right`, and writes it to the register
+IAND | `int left, int right, int addr` | Gets the bitwise logical AND of `left` and `right`, and writes it to the address
+IOR | `int right` | Gets the bitwise logical OR of the register and `right`, and writes it to the register
+IOR | `int left, int right` | Gets the bitwise logical OR of `left` and `right`, and writes it to the register
+IOR | `int left, int right, int addr` | Gets the bitwise logical OR of `left` and `right`, and writes it to the address
+IXOR | `int right` | Gets the bitwise logical XOR of the register and `right`, and writes it to the register
+IXOR | `int left, int right` | Gets the bitwise logical XOR of `left` and `right`, and writes it to the register
+IXOR | `int left, int right, int addr` | Gets the bitwise logical XOR of `left` and `right`, and writes it to the address
 
 #### Logical
 
+Command | Arguments | Description
+:---: | :--- | :---
+ISTRUE | (none) | If the value of the register corresponds to `true`, replaces it with 1. Otherwise, replaces it with 0.
+ISTRUE | `object value` | If `value` corresponds to `true`, writes 1 to the register. Otherwise, writes 0.
+ISTRUE | `object value, int addr` | If `value` corresponds to `true`, writes 1 to the address. Otherwise, writes 0.
+ISFALSE |  | Alias of NOT
+NOT | (none) | Gets the logical NOT of the register and writes it to the register
+NOT | `object value` | Gets the logical NOT of `value` and writes it to the register
+NOT | `object value, int addr` | Gets the logical NOT of `value` and writes it to the address
+AND | `object right` | Gets the logical AND of the register and `right`, and writes it to the register
+AND | `object left, object right` | Gets the logical AND of `left` and `right`, and writes it to the register
+AND | `object left, object right, int addr` | Gets the logical AND of `left` and `right`, and writes it to the address
+OR | `object right` | Gets the logical OR of the register and `right`, and writes it to the register
+OR | `object left, object right` | Gets the logical OR of `left` and `right`, and writes it to the register
+OR | `object left, object right, int addr` | Gets the logical OR of `left` and `right`, and writes it to the address
+XOR | `object right` | Gets the logical XOR of the register and `right`, and writes it to the register
+XOR | `object left, object right` | Gets the logical XOR of `left` and `right`, and writes it to the register
+XOR | `object left, object right, int addr` | Gets the logical XOR of `left` and `right`, and writes it to the address
+
 #### Strings
+Command | Arguments | Description
+:---: | :--- | :---
+ADD | `string right` | Appends the string in the register with `right`
 
 #### Comparison
 
