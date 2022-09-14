@@ -23,7 +23,7 @@ Up to 90 more variables can be declared in the program. The value of the variabl
     LOG %MyString%
     LOG %MyStringWithSpaces%
     
-In string arguments, variables will be substituted:
+In composite string arguments, variables will be substituted:
 
     VAR "Nacchan", MyName
     LOG "Hello, %MyName%!"
@@ -49,6 +49,8 @@ Some commands can write values to variables. This is done by providing a pointer
 
 A **command** is a programming function. It may be followed by some arguments. The command and its arguments must be in the same line, and each line may contain only one command. There can be any amount of whitespace on the line, as long as strings with spaces are delimited with quotes `"`.
 
+The command can be in uppercase, lowercase, or a mixture of the two.
+
 ### Running SB Files
 
 Before running SB files, they must be placed in the folder below. This directory appears after the mod has been activated for the first time.
@@ -63,3 +65,138 @@ Use the `ExecuteSB` dev console command to run SB files. As double quotes cannot
     
     ExecuteSB hello,#Simple Planes#      // wrong
     ExecuteSB "hello,#Simple Planes#"    // correct
+    
+A collection of SB files is available [here](/sb).
+
+## List of Commands
+
+### Commands by Type
+
+#### Basic Variable Access
+
+Command | Description
+:---: | :---
+VAR | Declare a new variable
+ST | Set the value of a variable
+SET | Alias of ST
+STC | Set the value of a variable as a composite string
+
+#### Conversion
+
+#### Numeric
+
+#### Integer Bitwise
+
+#### Logical
+
+#### String Operations
+
+#### Comparison
+
+#### Data Types
+
+#### Branching
+
+#### Dev Console
+
+#### Others
+
+### Commands by Alphabetical Order
+
+#### ADD
+
+#### AND
+
+#### BIN
+
+#### CEIL
+
+#### CHAR
+
+#### CLS
+
+#### DIV
+
+#### ECHO
+
+#### ENDIF
+
+#### EXE
+
+#### FLR
+
+#### GOTO
+
+#### HEX
+
+#### IF
+
+#### IOR
+
+#### INOT
+
+#### IOR
+
+#### ISEQ
+
+#### ISGT
+
+#### ISLT
+
+#### IXOR
+
+#### LOG
+
+#### LOGE
+
+#### LOGw
+
+#### MOD
+
+#### MUL
+
+#### NOT
+
+#### OR
+
+#### PARSE
+
+#### POS
+
+#### QUIT
+
+#### RANDOM
+
+#### REM
+
+#### RND
+
+#### SHL
+
+#### SHR
+
+#### ST
+
+#### STC
+
+#### STR
+
+#### STRGET
+
+#### STRLEN
+
+#### SUB
+
+#### SUBSTR
+
+#### TOINT
+
+#### TYPFLT
+
+#### TYPINT
+
+#### TYPSTR
+
+#### VAR
+
+#### XOR
