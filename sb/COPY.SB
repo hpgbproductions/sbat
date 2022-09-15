@@ -1,0 +1,4 @@
+REM "Makes a copy of an existing file."
+VAR FileContents
+FREAD %1,%&FileContents%
+FWRITE %2,%FileContents%
