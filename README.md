@@ -86,6 +86,8 @@ Use the `ExecuteSB` dev console command to run SB files. As double quotes cannot
     ExecuteSB hello,#Simple Planes#      // wrong
     ExecuteSB "hello,#Simple Planes#"    // correct
     
+In the dev console, typing `##` will allow you to pass a single `#` to the dev console. The combination `\#` will pass double quotes `"`.
+    
 If echo is enabled, commands that ran successfully will be written to the dev console. This is useful for debugging SB programs. Use the ECHO command in the SB file to choose whether such messages are written.
     
 A collection of SB files is available [here](/sb).
