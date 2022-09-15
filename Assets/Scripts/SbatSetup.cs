@@ -10,9 +10,16 @@ public class SbatSetup : MonoBehaviour
 
     private string HelloWorldPath;
     private string HelloWorldName = "HELLO.SB";
-    private string HelloWorldContents = @"REM ""This is a test Simple Batch Program""
-VAR %1, MyName
-LOG ""Hello, %MyName%!""";
+    private string HelloWorldContents = @"ECHO 0
+REM ""This is a test Simple Batch Program""
+
+LOG ""Hello, World!""
+
+VAR %1,""MyName""
+TYPSTR %MyName%
+IF
+LOG ""Hello, %MyName%!""
+ENDIF";
 
     private void Awake()
     {

@@ -933,6 +933,31 @@ public class SbatInterpreter : MonoBehaviour
                     case "ENDIF":
                         break;
 
+                    case "FREAD":
+                        // Read a file from the SimplePlanes folder completely
+                        // FREAD (string relativePath)
+                        // FREAD (string relativePath, int addr)
+                        if (CommandArgs.Count == 0)
+                            SbatArgsCountException(Command, CommandArgs.Count);
+                        string fread_path = Path.Combine(Application.persistentDataPath, ParseCommandArg(CommandArgs[0], true).ToString());
+                        if (CommandArgs.Count == 1)
+                            Register = File.ReadAllText(fread_path);
+                        else
+                            Memory[(int)ParseCommandArg(CommandArgs[1])] = File.ReadAllText(fread_path);
+                        break;
+
+                    case "FWRITE":
+                        // Write a file to the SimplePlanes folder completely
+                        // FWRITE (string relativePath, string contents)
+                        if (CommandArgs.Count < 2)
+                            SbatArgsCountException(Command, CommandArgs.Count);
+                        string fwrite_path = Path.Combine(Application.persistentDataPath, ParseCommandArg(CommandArgs[0], true).ToString());
+                        if (!File.Exists(fwrite_path))
+                            File.WriteAllText(fwrite_path, ParseCommandArg(CommandArgs[1], true).ToString());
+                        else
+                            Debug.LogError("Cannot write to a file that already exists.");
+                        break;
+
                     case "EXE":
                         if (CommandArgs.Count == 0)
                             SbatArgsCountException(Command, CommandArgs.Count);
