@@ -12,6 +12,7 @@ Commands by Type:
 - [Comparison](#comparison)
 - [Data Type Checks](#data-type-checks)
 - [Branching](#branching)
+- [File Access](#file-access)
 - [Dev Console](#dev-console)
 - [Others](#others)
 
@@ -274,6 +275,14 @@ ENDIF | (none) | Marks a position for an IF command to jump to if `false` was pa
 GOTO | (none) | Jumps to the first POS with a string that matches the register, if one exists.
 GOTO | `string pos` | Jumps to the first POS with a string that matches `pos`, if one exists.
 POS | `string pos` | Marks a position that a GOTO command can jump to.
+
+#### File Access
+
+Command | Arguments | Description
+:---: | :--- | :---
+FREAD | `string relativePath` | Reads a file from the SimplePlanes folder and writes the result to the register
+FREAD | `string relativePath, int addr` | Reads a file from the SimplePlanes folder and writes the result to the address
+FWRITE | `string relativePath, string contents` | Writes a file to the SimplePlanes folder. Will not overwrite existing files.
 
 #### Dev Console
 
