@@ -94,6 +94,8 @@ A collection of SB files is available [here](/sb).
 
 ## List of Commands
 
+Tip: You can see the implementation of each command in [SbatInterpreter.cs](/Assets/Scripts/SbatInterpreter.cs).
+
 ### Commands by Type
 
 #### Basic Variable Access
