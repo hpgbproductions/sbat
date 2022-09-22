@@ -110,6 +110,7 @@ Blue | Addresses of user-defined variables
 Magenta | Branching functions
 Yellow | Other functions
 Orange | Strings, invalid functions
+Gray | Remarks (`REM`)
 
 ## List of Commands
 
