@@ -4,8 +4,9 @@ Reference for the SB programming language.
 
 Syntax Overview:
 - [Data and Variables](#data-and-variables)
-- [Comments](#comments)
+- [Commands](#commands)
 - [Running SB Files](#running-sb-files)
+- [Syntax Highlighting](#syntax-highlighting)
 
 Commands by Type:
 - [Basic Variable Access](#basic-variable-access)
