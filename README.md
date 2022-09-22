@@ -2,6 +2,11 @@
 
 Reference for the SB programming language.
 
+Syntax Overview:
+- [Data and Variables](#data-and-variables)
+- [Comments](#comments)
+- [Running SB Files](#running-sb-files)
+
 Commands by Type:
 - [Basic Variable Access](#basic-variable-access)
 - [Conversion](#conversion)
@@ -91,6 +96,19 @@ In the dev console, typing `##` will allow you to pass a single `#` to the dev c
 If echo is enabled, commands that ran successfully will be written to the dev console. This is useful for debugging SB programs. Use the ECHO command in the SB file to choose whether such messages are written.
     
 A collection of SB files is available [here](/sb).
+
+## Syntax Highlighting
+
+A Notepad++ User-Defined Language style is available [here](/SimpleBatchStyle.xml). The style is as follows:
+
+Color | Items
+:---: | :---
+White | Numeric literals, variables `%0` to `%9`
+Green | User-defined variables
+Blue | Addresses of user-defined variables
+Magenta | Branching functions
+Yellow | Other functions
+Orange | Strings, invalid functions
 
 ## List of Commands
 
