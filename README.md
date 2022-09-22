@@ -98,7 +98,7 @@ If echo is enabled, commands that ran successfully will be written to the dev co
     
 A collection of SB files is available [here](/sb).
 
-## Syntax Highlighting
+### Syntax Highlighting
 
 A Notepad++ User-Defined Language style is available [here](/SimpleBatchStyle.xml). The style is as follows:
 
