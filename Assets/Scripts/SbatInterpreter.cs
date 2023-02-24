@@ -233,9 +233,9 @@ public class SbatInterpreter : MonoBehaviour
                         if (CommandArgs.Count == 0)
                             SbatArgsCountException(Command, CommandArgs.Count);
                         else if (CommandArgs.Count == 1)
-                            Register = ((char)(int)ParseCommandArg(CommandArgs[0])).ToString();
+                            Register = char.ConvertFromUtf32((int)ParseCommandArg(CommandArgs[0]));
                         else
-                            Memory[(int)ParseCommandArg(CommandArgs[1])] = ((char)(int)ParseCommandArg(CommandArgs[0])).ToString();
+                            Memory[(int)ParseCommandArg(CommandArgs[1])] = char.ConvertFromUtf32((int)ParseCommandArg(CommandArgs[0]));
                         break;
 
                     case "PARSE":
@@ -720,10 +720,10 @@ public class SbatInterpreter : MonoBehaviour
                         else
                         {
                             left = ParseCommandArg(CommandArgs[0], true);
-                            right = ParseCommandArg(CommandArgs[0]);
+                            right = ParseCommandArg(CommandArgs[1]);
                         }
                         if (right.GetType() == typeof(int))
-                            value = left.ToString()[(int)right];
+                            value = char.ConvertToUtf32((string)left, (int)right);
                         else
                             throw new ArgumentException($"Cannot get character with values of type {left.GetType()} and {right.GetType()}");
                         if (CommandArgs.Count < 3)
@@ -789,7 +789,7 @@ public class SbatInterpreter : MonoBehaviour
                             right = ParseCommandArg(CommandArgs[1]);
                         }
                         if (left.GetType() == typeof(string) || right.GetType() == typeof(string))
-                            value = left.ToString() == right.ToString();
+                            value = left.ToString() == right.ToString() ? 1 : 0;
                         else
                             value = ToFloat(left) == ToFloat(right) ? 1 : 0;
                         if (CommandArgs.Count < 3)
@@ -1262,7 +1262,7 @@ public class SbatInterpreter : MonoBehaviour
     }
 
     /// <summary>
-    /// Substitutes variables in arguments with their underlying values. Numeric values are unchanged.
+    /// Substitutes variables in arguments with their underlying values. String values are unchanged.
     /// </summary>
     private object ParseCommandArg(object input, bool composite = false)
     {
